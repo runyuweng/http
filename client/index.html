@@ -7,10 +7,31 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="http://localhost:3000/api1" method="get">
-    <p>First field: <input type="text" name="first" /></p>
-    <p>Second field: <input type="text" name="second" /></p>
-    <input type="submit" value="Submit" />
-</form>
+  <div>
+    <p>
+      <span>data1:</span>
+      <span id="data1"></span>
+    </p>
+    <p>
+      <span>data2:</span>
+      <span id="data2"></span>
+    </p>
+    <button id="btn1">请求1</button>
+    <button id="btn2">请求2</button>
+  </div>
+  <script type="text/javascript">
+    function getDom(id){
+      return document.getElementById(id)
+    }
+    const btn1 = getDom('btn1'),
+          btn2 = getDom('btn2'),
+          data1 = getDom('data1'),
+          data2 = getDom('data2');
+
+    btn1.onclick = function(){
+      fetch('http://localhost:3000/api1')
+      .then(req=>{console.log(req)})
+    }
+  </script>
 </body>
 </html>

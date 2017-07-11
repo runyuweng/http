@@ -1,17 +1,28 @@
 const Koa = require('koa');
 const Router = require('koa-router');
+// const koaBody = require('koa-body');
+const cors = require('koa-cors');
 
-const app = new Koa();
 const router = new Router();
+const app = new Koa();
 
-router.get('/', function (ctx, next) {
-  ctx.body = 'Hello World';
+app.use(cors());
+
+router.get('/api1', async (ctx, next) => {
+	console.log(111);
+	function a(){
+		console.log(222);
+		return 123
+	}
+	ctx.body = await a();
+	console.log(333,ctx.body);
+	return ctx.body;
 });
-router.get('/api1', function (ctx, next) {
-  ctx.body = 'api1';
-});
+
+
+
+
 app.use(router.routes());
-app.use(router.allowedMethods());
 
-
+// 在3001端口起服务
 app.listen(3000);
