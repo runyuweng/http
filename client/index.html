@@ -28,9 +28,23 @@
           data1 = getDom('data1'),
           data2 = getDom('data2');
 
+    let time = '';
+
     btn1.onclick = function(){
-      fetch('http://localhost:3000/api1')
-      .then(req=>{console.log(req)})
+
+      let myHeaders = new Headers();
+
+      if(time){
+        console.log('time',time);
+        myHeaders.append("If-Modified-Since", time);
+      }
+
+      fetch('http://localhost:3000/api1',{
+        headers: myHeaders
+      })
+      .then(res=>{
+        time = res.headers.get('Last-Modified');
+      })
     }
   </script>
 </body>

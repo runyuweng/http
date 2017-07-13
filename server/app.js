@@ -6,16 +6,24 @@ const cors = require('koa-cors');
 const router = new Router();
 const app = new Koa();
 
-app.use(cors());
+// app.use(cors());
+const date = new Date();
 
 router.get('/api1', async (ctx, next) => {
-	console.log(111);
-	function a(){
-		console.log(222);
-		return 123
-	}
-	ctx.body = await a();
-	console.log(333,ctx.body);
+	ctx.body = {
+		msg: 'success',
+		code: 'S01'
+	};
+	ctx.set({
+		'Cache-Control': 'max-age=10',
+		'Last-Modified': date,
+		'Access-Control-Allow-Origin':'*',
+		'Access-Control-Request-Headers':'*',
+		'Access-Control-Request-Method':'*'
+	});
+	console.log('ims',ctx.get("If-Modified-Since"));
+	// console.log(ctx);
+	// ctx.status = 404;
 	return ctx.body;
 });
 
