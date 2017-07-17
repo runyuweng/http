@@ -6,7 +6,7 @@ const cors = require('koa-cors');
 const router = new Router();
 const app = new Koa();
 
-// app.use(cors());
+app.use(cors());
 const date = new Date();
 
 router.get('/api1', async (ctx, next) => {
@@ -17,9 +17,6 @@ router.get('/api1', async (ctx, next) => {
 	ctx.set({
 		'Cache-Control': 'max-age=10',
 		'Last-Modified': date,
-		'Access-Control-Allow-Origin':'*',
-		'Access-Control-Request-Headers':'*',
-		'Access-Control-Request-Method':'*'
 	});
 	console.log('ims',ctx.get("If-Modified-Since"));
 	// console.log(ctx);

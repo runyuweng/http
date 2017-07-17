@@ -32,7 +32,7 @@
 
     btn1.onclick = function(){
 
-      let myHeaders = new Headers();
+      let myHeaders = new Headers({Origin:'127.0.0.1'});
 
       if(time){
         console.log('time',time);
