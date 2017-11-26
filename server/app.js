@@ -9,21 +9,35 @@ const app = new Koa();
 app.use(cors());
 const date = new Date();
 
-router.get('/api1', async (ctx, next) => {
+router.get('/', async (ctx, next) => {
 	ctx.body = {
-		msg: 'success',
+		msg: 'this is /',
 		code: 'S01'
 	};
 	ctx.set({
-		'Cache-Control': 'max-age=10',
-		'Last-Modified': date,
+		'Set-cookie': 1000
 	});
-	console.log('ims',ctx.get("If-Modified-Since"));
-	// console.log(ctx);
-	// ctx.status = 404;
 	return ctx.body;
 });
 
+router.get('/test', async (ctx, next) => {
+	ctx.body = {
+		msg: 'this is /test',
+		code: 'S01'
+	};
+	return ctx.body;
+});
+
+router.get('/set', async (ctx, next) => {
+	ctx.body = {
+		msg: 'this is /set',
+		code: 'S01'
+	};
+	ctx.set({
+		'Set-cookie': 22222
+	});
+	return ctx.body;
+});
 
 
 
